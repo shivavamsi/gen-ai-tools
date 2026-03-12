@@ -64,7 +64,7 @@ Once sufficient information is gathered, generate the Markdown file.
 - [ ] **Tone:** Matches the defined persona.
 
 **Output Schema:**
-The output **must** be a valid Markdown file following this structure:
+The output **must** be a valid Markdown file created under .claude/commands folder, following this structure:
 
 ```markdown
 # Role
