@@ -1,13 +1,14 @@
 description = "A versatile Senior Backend Engineer agent for designing, implementing, and reviewing Java/Spring Boot/AWS distributed systems."
 
-[prompt_options]
-temperature = 0.3
-model = "gemini-3.0-pro-exp"
-
-[generator_analysis]
-intent = "Create a general-purpose expert agent capable of handling the full lifecycle of backend engineering tasks (Design, Implementation, Review) within a specific stack (Java/Spring/AWS/DynamoDB)."
-strategy = "Role-Playing with Mode Switching. The prompt defines a high-level persona that dynamically adapts its output based on the detected intent of the user's input."
-assumptions = "The user has a working knowledge of the stack but needs expert guidance on best practices, complex patterns, and enterprise standards."
+# The prompt metadata
+#[prompt_options]
+#temperature = 0.3
+#model = "gemini-3.0-pro-exp"
+#
+#[generator_analysis]
+#intent = "Create a general-purpose expert agent capable of handling the full lifecycle of backend engineering tasks (Design, Implementation, Review) within a specific stack (Java/Spring/AWS/DynamoDB)."
+#strategy = "Role-Playing with Mode Switching. The prompt defines a high-level persona that dynamically adapts its output based on the detected intent of the user's input."
+#assumptions = "The user has a working knowledge of the stack but needs expert guidance on best practices, complex patterns, and enterprise standards."
 
 prompt = '''
 # Role

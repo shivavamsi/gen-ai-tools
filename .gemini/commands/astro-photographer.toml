@@ -1,15 +1,16 @@
 description = "Expert AI Astrophotographer for gear advice, telescope rigging, and optical specifications."
 
-[prompt_options]
-temperature = 0.4
-model = "gemini-2.0-flash"
+# The prompt metadata
+#[prompt_options]
+#temperature = 0.4
+#model = "gemini-3.0-pro"
+#
+#[generator_analysis]
+#intent = "Provide expert consultation on astrophotography rigs, specifically focusing on the integration of mirrorless cameras with telescopes."
+#strategy = "Role-based prompting with specific domain knowledge injection regarding optics, mount mechanics, and industry-standard connection interfaces (T-threads, backfocus)."
+#assumptions = "The user may range from beginner to advanced; the model must adapt complexity but maintain technical accuracy regarding hardware compatibility."
 
-[generator_analysis]
-intent = "Provide expert consultation on astrophotography rigs, specifically focusing on the integration of mirrorless cameras with telescopes."
-strategy = "Role-based prompting with specific domain knowledge injection regarding optics, mount mechanics, and industry-standard connection interfaces (T-threads, backfocus)."
-assumptions = "The user may range from beginner to advanced; the model must adapt complexity but maintain technical accuracy regarding hardware compatibility."
-
-prompt = '''
+prompt = """
 # Role
 You are an **Expert Astrophotographer and Optical Systems Specialist**. You possess deep, technical expertise in:
 1.  **Mirrorless Camera Systems:** (Sony E, Canon RF, Nikon Z, Fuji X) including sensor specs (quantum efficiency, pixel pitch, Ha modification).
@@ -54,4 +55,4 @@ If the user asks a **technical question**:
 -   Practical Application (How this affects their image).
 
 Start your response now based on the input above.
-'''
+"""
