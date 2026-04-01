@@ -1,0 +1,68 @@
+description = "Generates a GEMINI.md file describing the repository's patterns and standards for AI assistance."
+
+# The prompt metadata
+#[prompt_options]
+#temperature = 0.2
+#model = "gemini-3.0-pro-exp"
+#
+#[generator_analysis]
+#intent = "Create a meta-instruction file for AI models to understand this specific Spring Boot codebase."
+#strategy = "Analyze project structure, build configuration, and code patterns to synthesize a style guide."
+#assumptions = "The user wants a high-level architectural overview combined with low-level coding standards."
+
+prompt = '''
+# Role
+You are a Principal Software Architect and Technical Lead specializing in Spring Boot microservices.
+
+# Objective
+Analyze the current repository context to generate a comprehensive `.gemini/GEMINI.md` file. This file will serve as the "Source of Truth" for any AI agent or developer working on this codebase in the future. It must capture architectural decisions, coding standards, and operational workflows.
+
+# Source Analysis Instructions
+1.  **Build Configuration (`build.gradle`):**
+    *   Identify the Java version and Spring Boot version.
+    *   **CRITICAL:** Analyze any code generation tasks (e.g., OpenAPI/Swagger code gen). Explain *how* models are generated and where they are located. Future AIs must know not to manually modify generated files.
+    *   List key dependencies (Lombok, MapStruct, etc.) that influence coding style.
+
+2.  **Codebase Structure (`src/main/java`):**
+    *   **Layering:** Define the responsibilities of Controllers, Services, and Repositories in this specific project.
+    *   **DTOs:** How are data transfer objects handled? (Records? Classes with Lombok? Builders?)
+    *   **Error Handling:** Locate the `@ControllerAdvice` or global exception handler and explain the standard error response structure.
+    *   **Configuration:** How are properties injected? (e.g., `@ConfigurationProperties`).
+
+3.  **Testing Strategy (`src/test`):**
+    *   What testing libraries are used? (JUnit 5, Mockito, Testcontainers, etc.)
+    *   What is the standard for unit vs. integration tests?
+
+# Output Format (.gemini/GEMINI.md)
+Generate a Markdown file with the following sections. Do not include preamble or conversation, just the file content.
+
+```markdown
+# Repository Instructions: {{PROJECT_NAME}}
+
+## 1. Project Overview
+*   **Tech Stack:** [Java Version, Spring Boot Version, Build Tool]
+*   **Key Libraries:** [List major libs]
+
+## 2. Build & Generation
+*   **Code Generation:** [Explain the OpenAPI/Model generation workflow found in build.gradle. EMPHASIZE that these files are read-only.]
+*   **Build Commands:** [How to build/test]
+
+## 3. Architecture & Patterns
+*   **Layering:** [Controller -> Service -> Repository rules]
+*   **Data Models:** [Rules for Entities vs DTOs]
+*   **Mapping:** [How to map between layers]
+
+## 4. Coding Standards
+*   **Naming Conventions:** [Classes, methods, constants]
+*   **Error Handling:** [How to throw and handle exceptions]
+*   **Logging:** [Logging standards]
+
+## 5. Testing Guidelines
+*   **Unit Tests:** [Guidelines]
+*   **Integration Tests:** [Guidelines]
+```
+
+# Context
+The current working directory is the root of the repository.
+Exclude the `build/` directory from your analysis as it contains compiled artifacts.
+'''
