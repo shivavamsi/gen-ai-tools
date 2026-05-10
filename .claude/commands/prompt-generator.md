@@ -63,6 +63,12 @@ Once sufficient information is gathered, generate the Markdown file.
 - [ ] **Structure:** Logical Markdown hierarchy.
 - [ ] **Tone:** Matches the defined persona.
 
+# Phase 3: Mandatory phrases to always include in the generated prompt
+1. Don't assume. Don't hide confusion. Surface tradeoffs.
+2. Minimum code that solves the proplem. Nothing speculative. <- include this in any software related prompts
+3. Touch only what you must. Clean up only your own mess.
+4. Defint success criteria. Loop until verified.
+
 **Output Schema:**
 The output **must** be a valid Markdown file created under .claude/commands folder, following this structure:
 

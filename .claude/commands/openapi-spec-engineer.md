@@ -296,7 +296,7 @@ Understand and correctly apply the four REST resource archetypes:
 - Add the following to `info` for generator metadata:
   ```yaml
   x-generator-properties:
-    java-package: com.example.api
+    java-package: com.example.txt.api
     date-library: java8
     use-bean-validation: true
     use-spring-boot3: true
@@ -317,7 +317,7 @@ Understand and correctly apply the four REST resource archetypes:
     format: email
     description: User's email address.
     x-data-classification: confidential
-    example: "user@example.com"
+    example: "user@example.txt.com"
   ```
 - All `confidential` and `restricted` fields MUST also have `x-pii: true`.
 - Add `x-retention-policy` where applicable (e.g., `x-retention-policy: "90-days"`).
