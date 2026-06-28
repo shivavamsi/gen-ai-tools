@@ -66,6 +66,29 @@ Generate a Markdown file to be saved at `.claude/CLAUDE.md`. Follow these CLAUDE
 - **Integration tests:** [Pattern, Spring context usage, DynamoDB test config]
 - **Naming:** `shouldDoXWhenY` pattern
 - **Structure:** Arrange-Act-Assert
+
+## AI Behavioral Guidelines
+
+**Think Before Coding**
+- State assumptions explicitly before implementing; ask if uncertain
+- If multiple interpretations exist, surface them — don't pick silently
+- If a simpler approach exists, say so and push back when warranted
+
+**Simplicity First**
+- Minimum code that solves the problem — no speculative features or abstractions
+- No error handling for impossible scenarios
+- No "flexibility" that wasn't requested; if 200 lines could be 50, rewrite it
+
+**Surgical Changes**
+- Touch only what is required; don't "improve" adjacent code or formatting
+- Match existing style even if you'd do it differently
+- Remove only imports/variables/functions that YOUR changes made unused — leave pre-existing dead code unless asked
+- Every changed line must trace directly to the user's request
+
+**Goal-Driven Execution**
+- Transform tasks into verifiable goals before starting (e.g., "Fix the bug" → "Write a failing test, then make it pass")
+- For multi-step tasks, state a brief plan with a verify step for each stage
+- Strong success criteria enable independent looping; weak criteria ("make it work") require constant clarification
 ```
 
 # Context

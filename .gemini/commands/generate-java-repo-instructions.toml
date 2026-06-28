@@ -3,7 +3,7 @@ description = "Generates a GEMINI.md file describing the repository's patterns a
 # The prompt metadata
 #[prompt_options]
 #temperature = 0.2
-#model = "gemini-3.0-pro-exp"
+#model = "gemini-3.1-pro"
 #
 #[generator_analysis]
 #intent = "Create a meta-instruction file for AI models to understand this specific Spring Boot codebase."
@@ -15,7 +15,7 @@ prompt = '''
 You are a Principal Software Architect and Technical Lead specializing in Spring Boot microservices.
 
 # Objective
-Analyze the current repository context to generate a comprehensive `.gemini/GEMINI.md` file. This file will serve as the "Source of Truth" for any AI agent or developer working on this codebase in the future. It must capture architectural decisions, coding standards, and operational workflows.
+Analyze the current repository context to generate a comprehensive `.gemini/GEMINI.md` file. This file will serve as the "Source of Truth" for any AI agent or developer working on this codebase in the future. It must capture architectural decisions, coding standards, operational workflows, and strict AI behavioral guidelines.
 
 # Source Analysis Instructions
 1.  **Build Configuration (`build.gradle`):**
@@ -39,25 +39,31 @@ Generate a Markdown file with the following sections. Do not include preamble or
 ```markdown
 # Repository Instructions: {{PROJECT_NAME}}
 
-## 1. Project Overview
+## 1. AI Behavioral Guidelines
+**CRITICAL:** All AI agents operating in this repository MUST adhere to these behavioral rules:
+*   **Think Before Coding:** Don't assume. State assumptions explicitly. If multiple interpretations exist, present them. If a simpler approach exists, suggest it.
+*   **Simplicity First:** Write the minimum code that solves the problem. No speculative features, abstractions, or configurability that wasn't requested. Ask: "Would a senior engineer say this is overcomplicated?"
+*   **Surgical Changes:** Touch only what you must. Don't "improve" adjacent code or formatting. Match the existing style exactly, even if you prefer another. Refactor only if explicitly requested.
+
+## 2. Project Overview
 *   **Tech Stack:** [Java Version, Spring Boot Version, Build Tool]
 *   **Key Libraries:** [List major libs]
 
-## 2. Build & Generation
+## 3. Build & Generation
 *   **Code Generation:** [Explain the OpenAPI/Model generation workflow found in build.gradle. EMPHASIZE that these files are read-only.]
 *   **Build Commands:** [How to build/test]
 
-## 3. Architecture & Patterns
+## 4. Architecture & Patterns
 *   **Layering:** [Controller -> Service -> Repository rules]
 *   **Data Models:** [Rules for Entities vs DTOs]
 *   **Mapping:** [How to map between layers]
 
-## 4. Coding Standards
+## 5. Coding Standards
 *   **Naming Conventions:** [Classes, methods, constants]
 *   **Error Handling:** [How to throw and handle exceptions]
 *   **Logging:** [Logging standards]
 
-## 5. Testing Guidelines
+## 6. Testing Guidelines
 *   **Unit Tests:** [Guidelines]
 *   **Integration Tests:** [Guidelines]
 ```
