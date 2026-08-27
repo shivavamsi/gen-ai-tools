@@ -1,5 +1,5 @@
 ---
-name: build_skill
+name: build-skill
 description: Build a new Gemini skill from a set of provided inputs and resources, creating necessary directories and markdown files.
 ---
 # Gemini Skill Builder
