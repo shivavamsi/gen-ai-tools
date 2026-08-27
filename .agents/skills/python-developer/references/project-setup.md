@@ -1,0 +1,129 @@
+# Python Library Project Setup
+
+## Quick Start
+
+Create a new library with this structure:
+
+```
+my-library/
+├── src/my_library/
+│   ├── __init__.py
+│   └── py.typed
+├── tests/
+├── pyproject.toml
+├── Makefile
+├── .pre-commit-config.yaml
+└── .github/workflows/ci.yml
+```
+
+Use `src/` layout to prevent accidental imports of development code.
+
+## Core Configuration
+
+For complete templates, see:
+- **[project-setup-pyproject.md](project-setup-pyproject.md)** - Full pyproject.toml with all tool configs
+- **[project-setup-ci.md](project-setup-ci.md)** - GitHub Actions and pre-commit setup
+- **[project-setup-makefile.md](project-setup-makefile.md)** - Makefile automation patterns
+
+## Minimal pyproject.toml
+
+```toml
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "my-library"
+version = "0.1.0"
+description = "What it does"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "ruff>=0.1", "mypy>=1.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+```
+
+## Essential Commands
+
+```bash
+# Setup
+uv sync --extra dev
+pre-commit install
+
+# Daily workflow
+uv run ruff check src tests        # Lint
+uv run ruff format --check src tests  # Format check
+uv run ruff format src tests       # Format
+uv run pytest                      # Test
+uv run mypy src                    # Type check
+```
+
+## Keep local checks identical to CI
+
+The most common CI failure is not a bug — it's a check that passes locally but
+fails in CI (or vice versa) because the two run different commands. Two rules
+prevent an entire class of "green locally, red in CI" (and chronically-red base
+branch) problems:
+
+**1. `make lint` must be read-only — never `--fix`.** A `lint` target that runs
+`ruff check --fix` mutates your files and almost always exits 0, so pre-existing
+violations silently sit on the branch while CI's read-only `ruff check` goes red.
+Put `--fix` only in `format` and the pre-commit hook. `make lint` should run the
+*exact* commands CI runs.
+
+**2. CI (and `make lint`) must check formatting too.** `ruff check` and
+`ruff format` are different tools: the linter passing says nothing about
+formatting. Gate on both, or formatting drift ships / turns a branch red
+unexpectedly:
+
+```bash
+ruff check src tests          # lint rules
+ruff format --check src tests # formatting — REQUIRED, not implied by ruff check
+```
+
+Lint the **same paths** in the Makefile and CI (add `examples/`, `docs/`, etc. if
+they contain Python) — a narrower local scope lets violations accumulate in dirs
+CI checks. Configure ruff under `[tool.ruff.lint]` (not the deprecated top-level
+`select`/`ignore`), and keep `requires-python` and `[tool.ruff] target-version`
+in sync so ruff doesn't apply upgrade rules for a version you don't support.
+
+For coverage, prefer running `pytest --cov` with a terminal report
+(`--cov-report=term-missing`) in the CI log over uploading to a third-party
+service — no external account, token, or network dependency in the gate.
+
+## Key Decisions
+
+| Choice | Recommendation | Why |
+|--------|---------------|-----|
+| Layout | `src/` | Catches packaging bugs early |
+| Build backend | setuptools | Mature, broad compatibility |
+| Linter | ruff | Fast, replaces flake8+isort+black |
+| Python range | `>=3.10` | Don't pin exact versions |
+| Dependencies | Minimal | Move optional deps to extras |
+
+## Checklist
+
+```
+Project Setup:
+- [ ] src/ layout with py.typed marker
+- [ ] pyproject.toml (not setup.py)
+- [ ] Makefile with dev/test/lint/format (lint read-only, no --fix)
+- [ ] `make lint` runs the exact `ruff check` + `ruff format --check` CI runs
+- [ ] Build-gating tools pinned (linter, formatter, toolchain, test runner) so upstream releases don't flip green/red on unrelated PRs
+- [ ] .pre-commit-config.yaml
+- [ ] .github/workflows/ci.yml
+- [ ] README.md, LICENSE, CHANGELOG.md
+- [ ] .gitignore
+```
+
+## Helper Script
+
+Create a new project structure:
+```bash
+uv run python scripts/create_project.py my-library --author "Name"
+```

@@ -1,0 +1,4 @@
+interface:
+  display_name: "C++ Developer"
+  short_description: "Build robust, modern C++ systems"
+  default_prompt: "Use $cpp-developer to plan and implement this modern C++ task."
