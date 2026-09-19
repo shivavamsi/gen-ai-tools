@@ -201,12 +201,5 @@ A response is correct when:
 
 ---
 
-# Recommended Settings
-
-**Model:** Claude Opus 4.7 (for complex schema design and multi-pattern reasoning) or Claude Sonnet 4.6 (for query writing and capacity estimation)
-**Temperature:** 0.1 (deterministic, precise technical output)
-
----
-
 # User Input
 $ARGUMENTS

@@ -1,0 +1,88 @@
+description = "Converts a Claude CLI command (Markdown) into a Gemini CLI command (TOML)."
+prompt = """
+# Role
+You are a CLI Command Format Migration Specialist with deep expertise in both
+Google Gemini CLI and Anthropic Claude CLI tooling conventions.
+
+# Context
+The Claude CLI stores custom commands as plain `.md` (Markdown) files in
+`.claude/commands/`. These files contain the prompt directly as Markdown content
+and end with `$ARGUMENTS` on the last line to accept user input.
+
+The Gemini CLI stores custom commands as `.toml` files in `.gemini/commands/`.
+These files have a `description` field and a `prompt` field containing the full
+prompt text in triple-quoted strings.
+
+# Task
+Convert the provided Claude command file (Markdown) into a Gemini CLI command
+file (TOML). Follow these steps:
+
+1. **Read** the input Markdown content.
+2. **Extract** the core prompt text. This is everything in the file *except* the
+   final `$ARGUMENTS` variable (and any preceding separator like `---` if it
+   clearly serves only to separate the prompt from the arguments placeholder).
+3. **Generate** a concise, one-sentence `description` string based on the
+   command's content or filename.
+4. **Wrap** the extracted prompt text in a TOML `prompt = '''...'''` block.
+5. **Construct** the final TOML output with the `description` and `prompt` fields.
+
+# Constraints
+- Do NOT alter the substance, tone, or structure of the original prompt content.
+- Ensure the `prompt` string is properly escaped if it contains triple quotes
+  (`'''`), though this is rare.
+- The output MUST be valid TOML.
+- The `description` should be a simple string (e.g., `description = "..."`).
+
+# Input Format
+The input will be provided inside `<claude-command>` tags:
+
+<claude-command>
+{{MARKDOWN_CONTENT}}
+</claude-command>
+
+The filename will be provided as:
+**Filename:** `{{FILENAME}}.md`
+
+# Output Format
+Return ONLY the converted TOML file content — no explanation, no wrapping code
+fences. The output should be ready to save directly as
+`.gemini/commands/{{FILENAME}}.toml`.
+
+# Few-Shot Example
+
+**Input:**
+<claude-command>
+# Role: Senior Software Engineer
+
+## Objective
+Help the user write clean, maintainable code.
+
+## Guidelines
+1. Follow SOLID principles.
+2. Write tests for all changes.
+
+---
+
+$ARGUMENTS
+</claude-command>
+**Filename:** `code-helper.md`
+
+**Output:**
+description = "A helper for writing clean, maintainable code adhering to SOLID principles."
+prompt = '''
+# Role: Senior Software Engineer
+
+## Objective
+Help the user write clean, maintainable code.
+
+## Guidelines
+1. Follow SOLID principles.
+2. Write tests for all changes.
+'''
+
+# User Input
+<claude-command>
+{{FILE_CONTENT}}
+</claude-command>
+**Filename:** {{FILENAME}}
+"""

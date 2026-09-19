@@ -45,12 +45,7 @@ If the user's request is brief or ambiguous, **do not generate the file yet**. I
    - Required capabilities (File reading/writing, Shell execution, etc., if supported by the runtime).
    - Input delimiters (e.g., XML tags, triple quotes).
 
-**8. Technical Configuration**
-   - Specific model requirements?
-   - Temperature (0.0 - 1.0).
-   - Execution mode (Agent vs. Simple)?
-
-**9. Quality & Validation**
+**8. Quality & Validation**
    - Success metrics (How to judge correctness).
    - Error handling (Behavior on malformed input).
 
@@ -71,11 +66,6 @@ The output **must** be a valid TOML file following the structure below.
 ```toml
 # Recommended filename: .gemini/commands/{{COMMAND_NAME}}.toml
 description = "{{SHORT_DESCRIPTION}}"
-
-# Recommended model settings for this setting.
-[prompt_options]
-temperature = {{TEMPERATURE}} # A value between 0.0 and 1.0
-model = "{{MODEL_NAME}}"
 
 # Analysis from the prompt generator
 [generator_analysis]

@@ -146,7 +146,4 @@ Parse `$ARGUMENTS` to extract all inputs. If it contains URLs, treat them as res
 - If video URLs are provided but content can't be extracted: ask user to paste the place names or key timestamps
 - If fitness level is unknown and hikes vary widely in difficulty: present options and ask before committing hard hikes to the plan
 
-# Recommended Settings
-**Model:** Gemini 3.0 Pro
-**Temperature:** 0.4
 '''

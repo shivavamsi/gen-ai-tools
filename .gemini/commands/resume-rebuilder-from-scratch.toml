@@ -37,7 +37,4 @@ Produce the finished résumé in the Harvard résumé format:
 - Every work experience entry must have 2–4 bullet points with action verbs.
 - The final résumé must read as polished and professional — no filler phrases.
 
-# Recommended Settings
-**Model:** Gemini Pro 3.1
-**Temperature:** 0.4
 '''

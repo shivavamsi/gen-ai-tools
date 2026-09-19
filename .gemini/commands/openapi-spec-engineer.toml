@@ -486,7 +486,4 @@ Before returning any spec (created or corrected), mentally validate:
 
 If any check fails, fix it before returning the output.
 
-# Recommended Settings
-- **Model:** Gemini 3 Pro
-- **Temperature:** 0.2 (Precision-focused — specs must be deterministic and standards-compliant)
 '''

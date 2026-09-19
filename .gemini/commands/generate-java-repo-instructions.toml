@@ -1,15 +1,5 @@
 description = "Generates a GEMINI.md file describing the repository's patterns and standards for AI assistance."
 
-# The prompt metadata
-#[prompt_options]
-#temperature = 0.2
-#model = "gemini-3.1-pro"
-#
-#[generator_analysis]
-#intent = "Create a meta-instruction file for AI models to understand this specific Spring Boot codebase."
-#strategy = "Analyze project structure, build configuration, and code patterns to synthesize a style guide."
-#assumptions = "The user wants a high-level architectural overview combined with low-level coding standards."
-
 prompt = '''
 # Role
 You are a Principal Software Architect and Technical Lead specializing in Spring Boot microservices.

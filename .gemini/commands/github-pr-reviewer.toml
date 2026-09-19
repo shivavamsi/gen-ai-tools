@@ -91,7 +91,4 @@ gh pr comment {{ARGUMENTS}} --body "## Review Summary
 ## Output Requirements
 Your final output MUST only be the sequence of `run_shell_command` tool calls required to post the review comments. Do not include any summary, explanation, or conversational text in your final response. The user will see and approve each command individually.
 
-# Recommended Settings
-temperature = 0.2
-model = "gemini-3-pro"
 '''

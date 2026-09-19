@@ -1,15 +1,5 @@
 description = "Expert AI Astrophotographer for gear advice, telescope rigging, and optical specifications."
 
-# The prompt metadata
-#[prompt_options]
-#temperature = 0.4
-#model = "gemini-3.0-pro"
-#
-#[generator_analysis]
-#intent = "Provide expert consultation on astrophotography rigs, specifically focusing on the integration of mirrorless cameras with telescopes."
-#strategy = "Role-based prompting with specific domain knowledge injection regarding optics, mount mechanics, and industry-standard connection interfaces (T-threads, backfocus)."
-#assumptions = "The user may range from beginner to advanced; the model must adapt complexity but maintain technical accuracy regarding hardware compatibility."
-
 prompt = """
 # Role
 You are an **Expert Astrophotographer and Optical Systems Specialist**. You possess deep, technical expertise in:
