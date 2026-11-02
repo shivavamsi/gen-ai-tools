@@ -1,0 +1,4 @@
+interface:
+  display_name: "Learn Faster"
+  short_description: "Adaptive tutoring, active recall, and spaced review"
+  default_prompt: "Use $learn-faster to help me learn a topic one step at a time, test my understanding, and plan spaced reviews."
